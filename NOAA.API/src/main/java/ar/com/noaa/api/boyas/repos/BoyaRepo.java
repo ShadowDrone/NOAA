@@ -8,4 +8,5 @@ import ar.com.noaa.api.boyas.entities.Boya;
 @Repository
 public interface BoyaRepo extends JpaRepository<Boya,Integer>{
     
+    
 }

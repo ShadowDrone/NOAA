@@ -63,4 +63,10 @@ public class Boya {
 		this.muestras = muestras;
 	}
 
+	public void agregarMuestra(Muestra muestra)  {
+		this.muestras.add(muestra);
+		muestra.setBoya(this);
+
+	}
+	
 }
