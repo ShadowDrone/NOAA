@@ -18,7 +18,8 @@ public class MuestraService {
     @Autowired
     MuestraRepo muestraRepo;
 
-    public Muestra crearMuestra(Integer boyaId, Date horarioMuestra, Double latitud, Double longitud, String matriculaEmbarcacion, Double altura) {
+    public Muestra crearMuestra(Integer boyaId, Date horarioMuestra, Double latitud, Double longitud,
+            String matriculaEmbarcacion, Double altura) {
         Boya boya = boyaService.buscarBoyaPorId(boyaId);
         if (boya != null) {
 
@@ -30,25 +31,34 @@ public class MuestraService {
             muestra.setMatricula(matriculaEmbarcacion);
             boya.agregarMuestra(muestra);
 
-        
-            //Este orden de IF esta mal a proposito para en el proximo commit corregirlo
-            //usando unit tests
-            if (muestra.getAlturaMar() > 50 || muestra.getAlturaMar() < -50) {
-                boya.setColor("AMARILLO");
-            }
-            else if (muestra.getAlturaMar() < 100 || muestra.getAlturaMar() < -100) {
-                boya.setColor("ROJO");
-    
-            } else {
-                boya.setColor("VERDE");
-            }
-
+            boya.setColor(this.encontrarColor(muestra.getAlturaMar()));
             grabarMuestra(muestra);
-            return boya.getMuestras().get(boya.getMuestras().size()-1);
-        } else {
+            // Devuelve la ultima muestra agregada qeu es la mia.
+            // ya que actualizo por boya
+            return boya.getMuestras().get(boya.getMuestras().size() - 1);
+       } else {
             return null;
         }
 
+    }
+
+   
+
+
+    public String encontrarColor(Double altura) {
+        //Este orden de if sigue estando mal pero para probar con el Unit Test
+        //challenge pide: menos de -50 o mas de 50 AMARILLO
+        //menos de -100 o mas de 100 que ROJO
+        //SI No, VERDE
+        
+        if (altura < -100 || altura > 100) {
+            return "ROJO";
+        }
+        else if (altura < -50 || altura > 50) {
+            return "AMARILLO";
+        } else {
+            return "VERDE";
+        }
     }
 
     public void grabarMuestra(Muestra muestra) {
@@ -78,4 +88,5 @@ public class MuestraService {
     public void updateMuestra(Muestra muestra) {
         muestraRepo.save(muestra);
     }
+
 }
