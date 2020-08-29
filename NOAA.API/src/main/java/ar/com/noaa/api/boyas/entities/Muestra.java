@@ -6,17 +6,20 @@ import java.util.*;
 @Entity
 @Table(name = "muestra")
 public class Muestra {
-    @Column(name = "id_muestra")
+    @Column(name = "muestra_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "horario_muestra")
     private Date horario;
+    @Column(name = "matricula_embarcacion")
     private String matricula;
     private Double longitud;
     private Double latitud;
+    @Column(name = "altura")
     private Double alturaMar;
     @ManyToOne
-    @JoinColumn(name = "id_boya", referencedColumnName = "id_boya")
+    @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
     private Boya boya;
 
     public Integer getId() {

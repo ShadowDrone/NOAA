@@ -3,17 +3,23 @@ package ar.com.noaa.api.boyas.entities;
 import java.util.*;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "boya")
 public class Boya {
-	@Column(name = "id_boya")
+	@Column(name = "boya_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "color_luz")
 	private String color;
+	@Column(name = "longitud_instalacion")
 	private Double longitudInstalacion;
+	@Column(name = "latitud_instalacion")
 	private Double latitudInstalacion;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Muestra> muestras = new ArrayList<>();
 
