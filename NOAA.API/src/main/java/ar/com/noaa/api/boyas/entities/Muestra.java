@@ -12,9 +12,9 @@ public class Muestra {
     private Integer id;
     private Date horario;
     private String matricula;
-    private double longitud;
-    private double latitud;
-    private double alturaMar;
+    private Double longitud;
+    private Double latitud;
+    private Double alturaMar;
     @ManyToOne
     @JoinColumn(name = "id_boya", referencedColumnName = "id_boya")
     private Boya boya;
@@ -43,27 +43,27 @@ public class Muestra {
         this.matricula = matricula;
     }
 
-    public double getLongitud() {
+    public Double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(double longitud) {
+    public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
 
-    public double getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(double latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
 
-    public double getAlturaMar() {
+    public Double getAlturaMar() {
         return alturaMar;
     }
 
-    public void setAlturaMar(double alturaMar) {
+    public void setAlturaMar(Double alturaMar) {
         this.alturaMar = alturaMar;
     }
 

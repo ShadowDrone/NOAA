@@ -11,8 +11,8 @@ public class Boya {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String color;
-	private double longitudInstalacion;
-	private double latitudInstalacion;
+	private Double longitudInstalacion;
+	private Double latitudInstalacion;
 
 	@OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Muestra> muestras = new ArrayList<>();
@@ -33,19 +33,19 @@ public class Boya {
 		this.color = color;
 	}
 
-	public double getLongitudInstalacion() {
+	public Double getLongitudInstalacion() {
 		return longitudInstalacion;
 	}
 
-	public void setLongitudInstalacion(double longitudInstalacion) {
+	public void setLongitudInstalacion(Double longitudInstalacion) {
 		this.longitudInstalacion = longitudInstalacion;
 	}
 
-	public double getLatitudInstalacion() {
+	public Double getLatitudInstalacion() {
 		return latitudInstalacion;
 	}
 
-	public void setLatitudInstalacion(double latitudInstalacion) {
+	public void setLatitudInstalacion(Double latitudInstalacion) {
 		this.latitudInstalacion = latitudInstalacion;
 	}
 
